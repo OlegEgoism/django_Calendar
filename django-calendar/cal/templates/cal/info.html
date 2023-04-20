@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for i in info %}
+{{i.title}} <br>
+{% endfor %}
+
+<form method="POST">
+    <h3>Добавить</h3>
+    {% csrf_token %}
+    {{ form.title }} <br>
+    {{ form.description }}
+    <button type="submit" class="btn btn-outline-primary">Записать</button>
+</form>
+
+</body>
+</html>
