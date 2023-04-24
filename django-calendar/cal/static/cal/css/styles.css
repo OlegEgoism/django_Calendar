@@ -1,7 +1,4 @@
-/* Common styles */
-body {
-  font-family: "ptsans", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
+
 
 .left {
   float: left;
@@ -20,9 +17,15 @@ body {
 }
 
 .cal {
-  position: absolute;	/* Абсолютное позиционирование */
-  left: 50%; /* Положение слоя от левого края */
-  top: 12px; /* Положение слоя от верхнего края */
+  position: absolute;
+  left: 50%;
+  top: 12px;
+}
+
+.del_yes {
+  position: absolute;
+  left: 52%;
+  top: 60px;
 }
 
 .clearfix {
@@ -42,7 +45,6 @@ body {
   width: 100%;
 }
 
-/* App styles */
 .title {
   text-align: center;
   margin: 10px;
@@ -71,19 +73,19 @@ body {
 }
 
 .month {
-  font-size: 25px;
-  color: red;
+  font-size: 30px;
+  background: LightSteelBlue;
 }
 
 .date {
-  font-size: 16px;
+  font-size: 20px;
 }
 
 ul {
   height: 100%;
-  padding: 0px 5px 0px 20px;
+  padding: 0px 0px 0px 15px;
 }
 
 a {
-  color: #17a2b8;
+  color: Blue;
 }
