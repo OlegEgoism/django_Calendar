@@ -1,5 +1,6 @@
 from django.contrib import admin
-from cal.models import Event
+from .models import Event, User
+
 
 # Register your models here.
 # admin.site.register(Event)
@@ -7,4 +8,9 @@ from cal.models import Event
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
-   list_display = 'id', 'title', 'description'
+    list_display = 'title', 'description', 'start_time'
+
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = 'name',
