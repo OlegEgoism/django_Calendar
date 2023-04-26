@@ -24,6 +24,5 @@ class Event(models.Model):
 class User(models.Model):
     name = models.CharField(verbose_name='ФИО', max_length=200)
 
-
     def __str__(self):
         return self.name

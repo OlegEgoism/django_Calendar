@@ -12,6 +12,7 @@ from .utils import Calendar
 from .forms import EventForm
 
 locale.setlocale(locale.LC_ALL, 'ru_RU.utf8')  # Установите локаль на русский язык
+calendar.month_name = ['', 'ЯНВАРЬ', 'ФЕВРАЛЬ', 'МАРТ', 'АПРЕЛЬ', 'МАЙ', 'ИЮНЬ', 'ИЮЛь', 'АВГУСТ', 'СЕНТЯБРЬ', 'ОКТЯБРЬ', 'НОЯБРЬ', 'ДЕКАБРЬ']
 
 
 class CalendarView(generic.ListView):
@@ -21,7 +22,46 @@ class CalendarView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         d = get_date(self.request.GET.get('month', None))
+        # print(d, '!!!!!!!!!!!!!')
         cal = Calendar(d.year, d.month)
+
+        day = datetime.now().day
+        print(day, 'Деней')
+        month = datetime.now().month
+        print(month, 'МЕСЯЦ')
+        year = datetime.now().year
+        print(year, 'ГОД')
+        days_in_month = calendar.monthrange(day, month)[1]
+        print(days_in_month, 'Всего дней в месяце')
+
+        # day1 = datetime.day
+        # print(day1, 'Деней!!!!')
+        # month = datetime.now().month
+        # print(month, 'МЕСЯЦ')
+        # year = datetime.now().year
+        # print(year, 'ГОД')
+        # days_in_month = calendar.monthrange(day, month)
+        # print(days_in_month, 'Всего дней в месяце')
+
+
+
+        # start_date = datetime(2023, 4, 12)
+        # print(start_date, '!!!!!!!!!')
+        # end_date = datetime(year, month, day)
+        # #
+        # events_all = Event.objects.filter(start_time__range=(start_date, end_date)).count()
+        # print('В календаре всего ----', events_all)
+
+        # query_date = date.today()
+        # events1 = Event.objects.filter(start_time__range=(query_date).count()
+        # print(events1, 'events1events1events1')
+
+
+        # events2 = Event.objects.filter(start_time__gte=query_date).count()
+        # print(events1-events2)
+
+        # co_all = Event.objects.count()
+        # print(co_all)
         html_cal = cal.formatmonth(withyear=True)
         context['calendar'] = mark_safe(html_cal)
         context['prev_month'] = prev_month(d)
@@ -30,6 +70,14 @@ class CalendarView(generic.ListView):
 
 
 def get_date(req_month):
+
+    # cal = Calendar(datetime.today())
+    # print(cal)
+    # co = Event.objects.filter(date.month==12)
+    # print(co)
+
+    # co_all = Event.objects.count()
+    # print(co_all)
     if req_month:
         year, month = (int(x) for x in req_month.split('-'))
         return date(year, month, day=1)
@@ -52,6 +100,7 @@ def next_month(d):
 
 
 def event(request, id=None):
+
     if id:
         instance = get_object_or_404(Event, id=id)
     else:
@@ -71,3 +120,13 @@ class EventMemberDeleteView(DeleteView):
     model = Event
     template_name = "cal/event_delete.html"
     success_url = reverse_lazy("cal:calendar")
+
+
+# def event_count(request):
+#     co = Event.objects.count()
+#     print(co)
+#
+#     context = {
+#         'co': co,
+#     }
+#     return render(request, 'cal/calendar.html', context=context)
