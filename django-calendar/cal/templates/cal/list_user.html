@@ -1,0 +1,20 @@
+{% extends 'cal/base.html' %}
+
+{% block content %}
+    <div class="clearfix">
+        <a class="btn btn-info left" href="{% url 'cal:calendar' %}"> Календарь </a>
+        <a class="btn btn-info right" href="{% url 'cal:event_new' %}"> + Добавить мероприятие </a>
+        <a class="btn btn-info right" href="{% url 'cal:add_user' %}"> Добавить пользователя </a>
+    </div>
+    <h4 class="clearfix">СПИСОК ПОЛЬЗОВАТЕЛЕЙ - {{ users_with_event_count|length }} пользователей</h4>
+    <h6 class="clearfix left">
+        {% for user in users_with_event_count %}
+            <a href="{% url 'cal:user_detail' user.id %}"> <!-- Замените 'user_detail' на имя вашего URL-шаблона -->
+                {{ user.name }} <br>
+                - всего мероприятий: {{ user.event_count }} шт. <br>
+            </a>
+            <br> _______________________________ <br>
+        {% endfor %}
+    </h6>
+
+{% endblock %}
