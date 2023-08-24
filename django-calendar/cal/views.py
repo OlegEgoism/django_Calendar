@@ -16,7 +16,7 @@ locale.setlocale(locale.LC_ALL, 'ru_RU.utf8')  # Установите локал
 calendar.month_name = ['',
                        'ЯНВАРЬ', 'ФЕВРАЛЬ', 'МАРТ',
                        'АПРЕЛЬ', 'МАЙ', 'ИЮНЬ',
-                       'ИЮЛь', 'АВГУСТ', 'СЕНТЯБРЬ',
+                       'ИЮЛЬ', 'АВГУСТ', 'СЕНТЯБРЬ',
                        'ОКТЯБРЬ', 'НОЯБРЬ', 'ДЕКАБРЬ'
                        ]
 
@@ -86,23 +86,16 @@ class EventMemberDeleteView(DeleteView):
     success_url = reverse_lazy("cal:calendar")
 
 
-# def list_user(request):
-#     """Отображаем весь список пользователей"""
-#     event_count = User.objects.annotate(event_count=Count('user_event'))
-#     context = {
-#         'event_count': event_count
-#     }
-#     return render(request, 'cal/list_user.html', context)
-
-def list_user(request):
+def user_list(request):
     users_with_event_count = User.objects.annotate(event_count=Count('user_event'))
     context = {
         'users_with_event_count': users_with_event_count
     }
-    return render(request, 'cal/list_user.html', context)
+    return render(request, 'cal/user_list.html', context)
 
 
 def user_detail(request, user_id):
+    """Информмация о пользователе"""
     user = User.objects.get(pk=user_id)
     context = {
         'user': user
