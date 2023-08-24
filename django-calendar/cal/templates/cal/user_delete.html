@@ -1,0 +1,22 @@
+{% extends 'cal/base.html' %}
+
+{% block content %}
+    <div class="clearfix">
+        <a class="btn btn-info left" href="{% url 'cal:calendar' %}"> Календарь </a>
+        <a class="btn btn-info right" href="{% url 'cal:event_new' %}"> + Добавить мероприятие </a>
+        <a class="btn btn-info right" href="{% url 'cal:add_user' %}"> + Добавить пользователя </a>
+        <a class="btn btn-info right" href="{% url 'cal:user_list' %}"> Список пользователей </a>
+    </div>
+    <div>
+        <form action="{% url 'cal:user_detail' user.id %}" method="post">
+            {% csrf_token %}
+            <p class="cal">Удалить пользователя <br>
+                {{ user }}?
+            </p>
+            <h4 class="del_yes">
+                <button type="submit" class="btn btn-danger left">Да</button>
+                <a class="btn btn-info right" href="{% url 'cal:user_detail' user.id %}">Нет</a>
+            </h4>
+        </form>
+    </div>
+{% endblock %}
