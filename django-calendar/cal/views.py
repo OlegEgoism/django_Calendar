@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta, date
 from django.db.models import Count
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic
@@ -63,15 +63,13 @@ def next_month(d):
 
 
 def event(request, id=None):
-    """Добавление мероприятий"""
-    if id:
-        instance = get_object_or_404(Event, id=id)
-    else:
-        instance = Event()
+    """Просмотр и редактирование мероприятия"""
+    instance = get_object_or_404(Event, id=id) if id else Event()
     form = EventForm(request.POST or None, instance=instance)
     if request.POST and form.is_valid():
         form.save()
         return HttpResponseRedirect(reverse('cal:calendar'))
+
     context = {
         'form': form,
         'event_del': instance,
@@ -87,24 +85,18 @@ class EventMemberDeleteView(DeleteView):
 
 
 def user_list(request):
+    """Список пользователей"""
     users_with_event_count = User.objects.annotate(event_count=Count('user_event'))
+    total_event_count = Event.objects.count()
     context = {
-        'users_with_event_count': users_with_event_count
+        'users_with_event_count': users_with_event_count,
+        'total_event_count': total_event_count
     }
     return render(request, 'cal/user_list.html', context)
 
 
-def user_detail(request, user_id):
-    """Информмация о пользователе"""
-    user = User.objects.get(pk=user_id)
-    context = {
-        'user': user
-    }
-    return render(request, 'cal/user_detail.html', context)
-
-
 def add_user(request):
-    """Добовляение пользователей"""
+    """Добовляение пользователя"""
     if request.method == 'POST':
         user_form = UserForm(request.POST)
         if user_form.is_valid():
@@ -116,3 +108,17 @@ def add_user(request):
         'user_form': user_form,
     }
     return render(request, 'cal/add_user.html', context=context)
+
+
+def user_detail(request, user_id):
+    """Информмация о пользователе"""
+    user = User.objects.get(pk=user_id)
+    all_event = user.user_event.all()
+    if request.method == 'POST':
+        user.delete()
+        return redirect('cal:user_list')
+    context = {
+        'user': user,
+        'all_event': all_event
+    }
+    return render(request, 'cal/user_detail.html', context)

@@ -13,3 +13,17 @@
     </form>
 </div>
 {% endblock content %}
+
+    <form method="post">
+        {% csrf_token %}
+        <table class="form form-table">
+            {{ form }}
+            <tr>
+                <td colspan="2">
+                    {% if event_del.id %}
+                        <a class="btn btn-danger right" href="{% url 'cal:user_detail' user.id %}">Удалить</a>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+    </form>

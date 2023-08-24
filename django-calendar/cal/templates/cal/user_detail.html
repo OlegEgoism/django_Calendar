@@ -5,10 +5,25 @@
         <a class="btn btn-info left" href="{% url 'cal:calendar' %}"> Календарь </a>
         <a class="btn btn-info right" href="{% url 'cal:event_new' %}"> + Добавить мероприятие </a>
         <a class="btn btn-info right" href="{% url 'cal:user_list' %}"> Список пользователей </a>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger right">Удалить пользователя</button>
+        </form>
     </div>
-    <h6 class="clearfix left">
-        {{ user }}
-    </h6>
+    <h5 class="clearfix left">
+        {{ user }} <br>
+        {% for i in all_event %}
+            <a href="{% url 'cal:event_edit' i.id %}">
+                <div class="btn_res btn-light">
+                    <h5>{{ i.title }}</h5>
+                    <h6>
+                        Описание: {{ i.description|slice:"150"|safe}} {% if i.description|length > 150 %}...{% endif %} <br>
+                        Время начала: {{ i.start_time }} <br>
+                        Время окончания: {{ i.end_time }} <br>
+                    </h6>
+                </div>
+            </a>
+        {% endfor %}
+    </h5>
+
 {% endblock %}
-
-

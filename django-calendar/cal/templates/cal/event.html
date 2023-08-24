@@ -5,6 +5,9 @@
         <a class="btn btn-info left" href="{% url 'cal:calendar' %}"> Календарь </a>
         <a class="btn btn-info right" href="{% url 'cal:add_user' %}"> + Добавить пользователя </a>
         <a class="btn btn-info right" href="{% url 'cal:user_list' %}"> Список пользователей </a>
+        {% if event_del.id %}
+            <a class="btn btn-danger right" href="{% url 'cal:event_delete' event_del.id %}">Удалить</a>
+        {% endif %}
     </div>
 
     {% if form.errors %}
@@ -27,15 +30,11 @@
         {% csrf_token %}
         <table class="form form-table">
             {{ form }}
-            <tr>
                 <td colspan="2">
                     <button type="submit" class="btn btn-info right">Добавить</button>
-                    {% if event_del.id %}
-                        <a class="btn btn-info right" href="{% url 'cal:event_delete' event_del.id %}">Удaлить</a>
-                    {% endif %}
                 </td>
-            </tr>
         </table>
     </form>
+
 {% endblock %}
 
