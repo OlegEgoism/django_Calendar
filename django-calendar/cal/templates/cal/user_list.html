@@ -9,11 +9,11 @@
     <h5 class="clearfix"> Всего пользователей: {{ users_with_event_count|length }} <br> Всего мероприятий: {{ total_event_count }}</h5>
 
     {% for letter in "АБВГДЕЖЗИКЛМНОПРСТУФХЦЧШЩЭЮЯ" %}
-        <h6 class="clearfix ">
+        <h6 class="clearfix">
             <strong>{{ letter }}</strong>
             {% for user in users_with_event_count|dictsort:"name" %}
                 {% if user.name.0|upper == letter %}
-                    <a class="btn_user" href="{% url 'cal:user_detail' user.id %}">
+                    <a class="btn-info btn_user" href="{% url 'cal:user_detail' user.id %}">
                         {{ user.name }} <br>
                         - всего мероприятий: {{ user.event_count }} шт. <br>
                     </a>

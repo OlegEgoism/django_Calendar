@@ -20,7 +20,7 @@ class Event(models.Model):
     @property
     def get_html_url(self):
         url = reverse('cal:event_edit', args=(self.id,))
-        return f'<a href="{url}"> {self.start_time.__format__("%H:%M")} - {self.user}</a>'  # <hr>'
+        return f'<a href="{url}" class="btn-info btn_cal">{self.start_time.__format__("%H:%M")} - {self.user}</a>'
 
     def clean(self):
         """Проверка даты"""
@@ -34,7 +34,7 @@ class Event(models.Model):
 
 class User(models.Model):
     """Пользователь"""
-    name = models.CharField(verbose_name='ФИО', max_length=200)
+    name = models.CharField(verbose_name='ФИО', max_length=200, unique=True)
 
     class Meta:
         verbose_name = 'Пользователь'

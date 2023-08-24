@@ -38,6 +38,21 @@
   padding: 5px;
 }
 
+.btn_cal {
+  font-size: 10px;
+  margin: 1px;
+  border-radius: 5px;
+  border: 1px solid #17a2b8;
+  padding: 5px;
+  color: black;
+  background-color: transparent;
+  box-shadow: 0 0 0 0;
+  align-items: center;
+  justify-content: center;
+  display: inline-block;
+  text-align: center;
+}
+
 .cal {
   position: absolute;
   left: 50%;
