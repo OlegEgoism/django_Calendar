@@ -37,6 +37,8 @@ class CalendarView(generic.ListView):
         return context
 
 
+
+
 def get_date(req_month):
     """Обработка даты"""
     if req_month:

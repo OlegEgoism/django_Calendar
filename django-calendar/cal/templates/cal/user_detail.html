@@ -1,6 +1,7 @@
 {% extends 'cal/base.html' %}
 
 {% block content %}
+
     <div class="clearfix">
         <a class="btn btn-info left" href="{% url 'cal:calendar' %}"> Календарь </a>
         <a class="btn btn-info right" href="{% url 'cal:event_new' %}"> + Добавить мероприятие </a>
@@ -10,6 +11,7 @@
             <button type="submit" class="btn btn-danger right">Удалить пользователя</button>
         </form>
     </div>
+
     <h5 class="clearfix left">
         {{ user }} <br>
         {% for i in all_event %}
