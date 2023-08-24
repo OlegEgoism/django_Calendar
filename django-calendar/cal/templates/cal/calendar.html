@@ -5,7 +5,6 @@
     <div class="clearfix">
         <a class="btn btn-info" href="{% url 'cal:calendar' %}?{{ prev_month }}"> << Предидущий месяц </a>
         <a class="btn btn-info" href="{% url 'cal:calendar' %}?{{ next_month }}"> Следующий месяц >> </a>
-        <h2 class="cal">КАЛЕНДАРЬ</h2>
         <a class="btn btn-info right" href="{% url 'cal:event_new' %}"> + Добавить мероприятие </a>
         <a class="btn btn-info right" href="{% url 'cal:add_user' %}"> + Добавить пользователя </a>
         <a class="btn btn-info right" href="{% url 'cal:user_list' %}"> Список пользователей </a>
