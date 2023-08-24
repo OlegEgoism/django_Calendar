@@ -124,3 +124,11 @@ def user_detail(request, user_id):
         'all_event': all_event
     }
     return render(request, 'cal/user_detail.html', context)
+
+def user_delete(request, user_id):
+    """Удаляем выброного пользователя"""
+    user = get_object_or_404(User, pk=user_id)
+    context = {
+        'user': user,
+    }
+    return render(request, 'cal/user_delete.html', context)

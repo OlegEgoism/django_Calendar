@@ -6,7 +6,7 @@
         <a class="btn btn-info right" href="{% url 'cal:add_user' %}"> + Добавить пользователя </a>
         <a class="btn btn-info right" href="{% url 'cal:user_list' %}"> Список пользователей </a>
         {% if event_del.id %}
-            <a class="btn btn-danger right" href="{% url 'cal:event_delete' event_del.id %}">Удалить</a>
+            <a class="btn btn-danger right" href="{% url 'cal:event_delete' event_del.id %}">Удалить мероприятие</a>
         {% endif %}
     </div>
 

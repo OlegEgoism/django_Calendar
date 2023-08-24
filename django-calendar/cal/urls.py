@@ -10,4 +10,5 @@ urlpatterns = [
     path('user_list/', views.user_list, name='user_list'),
     path('add_user/', views.add_user, name='add_user'),
     path('user_detail/<int:user_id>/', views.user_detail, name='user_detail'),
+    path('user_delete/<int:user_id>/', views.user_delete, name='user_delete'),
 ]
