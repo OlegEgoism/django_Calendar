@@ -4,9 +4,17 @@
 
     <div class="clearfix">
         <a class="btn btn-info left" href="{% url 'cal:calendar' %}"> Календарь </a>
-        <form action="" method="post">{% csrf_token %}
-            <p class="cal">Удалить мероприятие?</p>
-            <h4 class="del_yes">
+        <a class="btn btn-info right" href="{% url 'cal:event_new' %}"> + Добавить мероприятие </a>
+        <a class="btn btn-info right" href="{% url 'cal:add_user' %}"> + Добавить пользователя </a>
+        <a class="btn btn-info right" href="{% url 'cal:user_list' %}"> Список пользователей </a>
+    </div>
+    <div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <p class="title">Удалить мероприятие <br>
+                {{ event.title }}?
+            </p>
+            <h4 class="m_button">
                 <button type="submit" class="btn btn-danger left">Да</button>
                 <a class="btn btn-info right" href="{% url 'cal:event_edit' event.id %}">Нет</a>
             </h4>

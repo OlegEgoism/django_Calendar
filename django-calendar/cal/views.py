@@ -37,8 +37,6 @@ class CalendarView(generic.ListView):
         return context
 
 
-
-
 def get_date(req_month):
     """Обработка даты"""
     if req_month:
@@ -79,11 +77,17 @@ def event(request, id=None):
     return render(request, 'cal/event.html', context=context)
 
 
-class EventMemberDeleteView(DeleteView):
-    """Удаление мероприятий"""
-    model = Event
-    template_name = "cal/event_delete.html"
-    success_url = reverse_lazy("cal:calendar")
+def event_delete(request, event_id):
+    """Удаление мероприятия"""
+    event = get_object_or_404(Event, pk=event_id)
+    if request.method == 'POST':
+        event.delete()
+        return redirect(reverse('cal:calendar'))
+
+    context = {
+        'event': event,
+    }
+    return render(request, 'cal/event_delete.html', context)
 
 
 def user_list(request):
@@ -124,6 +128,7 @@ def user_detail(request, user_id):
         'all_event': all_event
     }
     return render(request, 'cal/user_detail.html', context)
+
 
 def user_delete(request, user_id):
     """Удаляем выброного пользователя"""
