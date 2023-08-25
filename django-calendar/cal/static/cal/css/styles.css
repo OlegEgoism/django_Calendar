@@ -131,3 +131,8 @@ ul {
 a {
   color: Blue;
 }
+
+.sm {
+  font-size: 12px;
+  color: rgb(255, 0, 106);
+}

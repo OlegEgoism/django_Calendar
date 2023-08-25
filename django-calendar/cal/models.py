@@ -1,3 +1,4 @@
+from colorfield.fields import ColorField
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.urls import reverse
@@ -9,13 +10,16 @@ class Event(models.Model):
     description = models.TextField(verbose_name='Описание', blank=True, null=True)
     start_time = models.DateTimeField(verbose_name='Время начала')
     end_time = models.DateTimeField(verbose_name='Время окончания')
-    user = models.ForeignKey('User', verbose_name='ФИО', related_name='user_event', on_delete=models.CASCADE,
-                             blank=True, null=True)
+    user = models.ForeignKey('User', verbose_name='ФИО', related_name='user_event', on_delete=models.CASCADE, blank=True, null=True)
+    date_create = models.DateTimeField(verbose_name='Время создания', auto_now_add=True)
 
     class Meta:
         verbose_name = 'Календарь'
         verbose_name_plural = 'Календарь'
         ordering = 'start_time',
+
+    def __str__(self):
+        return self.title
 
     @property
     def get_html_url(self):
@@ -35,6 +39,7 @@ class Event(models.Model):
 class User(models.Model):
     """Пользователь"""
     name = models.CharField(verbose_name='ФИО', max_length=200, unique=True)
+    color = ColorField(verbose_name='Цвет фона', help_text='Выберите цвет для фона', default='#30FFE9')
 
     class Meta:
         verbose_name = 'Пользователь'

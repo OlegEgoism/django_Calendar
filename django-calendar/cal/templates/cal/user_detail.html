@@ -17,9 +17,11 @@
                 <div class="btn_res btn-light">
                     <h5>{{ i.title }}</h5>
                     <h6>
-                        Описание: {{ i.description|slice:"150"|safe}} {% if i.description|length > 150 %}...{% endif %} <br>
-                        Время начала: {{ i.start_time }} <br>
-                        Время окончания: {{ i.end_time }} <br>
+                        Описание: {{ i.description|slice:"180"|safe}} {% if i.description|length > 180 %}...{% endif %} <br>
+                        <p class="sm">
+                            Время начала: {{ i.start_time }} <br>
+                            Время окончания: {{ i.end_time }} <br>
+                        </p>
                     </h6>
                 </div>
             </a>

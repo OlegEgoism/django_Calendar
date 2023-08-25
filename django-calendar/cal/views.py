@@ -2,9 +2,7 @@ from datetime import datetime, timedelta, date
 from django.db.models import Count
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
-from django.urls import reverse_lazy
 from django.views import generic
-from django.views.generic.edit import DeleteView
 from django.utils.safestring import mark_safe
 import locale
 import calendar
