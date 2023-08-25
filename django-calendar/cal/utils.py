@@ -1,7 +1,5 @@
 from calendar import HTMLCalendar
-
 from django.urls import reverse
-
 from .models import Event
 
 
