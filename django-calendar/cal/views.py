@@ -32,6 +32,8 @@ class CalendarView(generic.ListView):
         context['calendar'] = mark_safe(html_cal)
         context['prev_month'] = prev_month(d)
         context['next_month'] = next_month(d)
+        users_with_colors = User.objects.all().values('id', 'color')
+        context['users_with_colors'] = {user['id']: user['color'] for user in users_with_colors}
         return context
 
 
