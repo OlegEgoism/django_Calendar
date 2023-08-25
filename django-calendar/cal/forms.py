@@ -20,4 +20,4 @@ class EventForm(ModelForm):
 class UserForm(ModelForm):
     class Meta:
         model = User
-        fields = 'name', 'color',
+        fields = 'name',

@@ -1,4 +1,7 @@
 from calendar import HTMLCalendar
+
+from django.urls import reverse
+
 from .models import Event
 
 
@@ -13,8 +16,9 @@ class Calendar(HTMLCalendar):
         d = ''
         for event in events_per_day:
             d += f'{event.get_html_url}'
-
         if day != 0:
+            add_event_url = reverse('cal:event_new') + f'?date={self.year}-{self.month:02d}-{day:02d}'
+            d += f'<a href="{add_event_url}" class="add-event-link"><div class="circle-button">+</div></a>'
             return f"<td><span class='date'>{day}</span><ul> {d} </ul></td>"
         return '<td></td>'
 

@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cal',
     'colorfield',
+
+    'rangefilter',
+    'admin_auto_filters',
 ]
 
 MIDDLEWARE = [
